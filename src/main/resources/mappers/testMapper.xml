@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bookgeorge.test.TestMapper">
+	<select id="selectTest" parameterType="string" resultType="string">
+		SELECT content FROM tbl_sms WHERE content like CONCAT('%', #{value}, '%')
+		<!-- SELECT content FROM tbl_sms WHERE content like CONCAT('%', '입금', '%') -->
+		<!-- SELECT content FROM tbl_sms WHERE content like CONCAT('%', '우리', '%') and content like CONCAT('%', '취소', '%') -->
+	</select>
+  
+	<select id="regEx" resultType="Map">
+		SELECT * FROM tbl_sms_regex 
+	</select>
+	  
+	<insert id="insertFormats" parameterType="db.VendorSMSFormat">
+        INSERT INTO tbl_vendor_sms_format 
+        	(vendor_id, format_id, format_check_regex, cost_regex, store_regex, date_regex)
+        VALUES
+        <foreach collection="list" item="format" separator=" , ">
+            (#{format.vendorId}, #{format.formatId}, #{format.formatCheckRegex}
+            	, #{format.costRegex}, #{format.storeRegex}, #{format.dateRegex})
+        </foreach>
+ 	</insert>
+</mapper>
