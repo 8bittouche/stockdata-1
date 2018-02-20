@@ -3,20 +3,21 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.bookgeorge.bookMapper">
+<mapper namespace="expert.wearedata.stockDataMapper">
 
 	<resultMap id="stockData" type="expert.wearedata.api.model.StockData">
-  		<id property="dataId" column="book_id" />
-  		<result property="symbolId" column="book_no" />
-  		<result property="itemId" column="title" />
-  		<result property="value" column="author" />
-  		<result property="isbn" column="isbn" />
-  		<result property="dataType" column="publisher"/>
-  		<result property="date" column="pub_date"/>
+  		<id property="dataId" column="data_id" />
+  		<result property="symbolId" column="symbol_id" />
+  		<result property="date" column="date" typeHandler="expert.wearedata.api.typehandler.LocalDateTypeHandler"/>
 	</resultMap>
 
-	<select id="selectAll" resultMap="stockData">
-		SELECT * FROM tb_data LIMIT 0, 10;
+	<select id="selectList" resultMap="stockData">
+		SELECT 
+			data_id,
+			symbol_id,
+			date
+		FROM 
+			tb_data;
 	</select>
   
 </mapper>

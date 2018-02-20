@@ -15,7 +15,7 @@ public class StockDataDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	private String mapperPrefix = "";
+	private String mapperPrefix = "expert.wearedata.stockDataMapper";
 	
 	public List<StockData> selectList(String itemName,
 			LocalDate dateFrom,

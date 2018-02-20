@@ -7,11 +7,11 @@
 	<configuration>
 	
 		<typeHandlers>
-  			<package name=" expert.wearedata.api.typehandler"/>
+  			<package name="expert.wearedata.api.typehandler"/>
 		</typeHandlers>
 	
 		<mappers>
-			<mapper resource="mappers/stockdataMapper.xml" /> 
+			<mapper resource="mappers/stockDataMapper.xml" /> 
 		</mappers>
 		
 	</configuration>

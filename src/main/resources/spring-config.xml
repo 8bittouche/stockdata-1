@@ -7,9 +7,8 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 		
-		<!-- 
-		<context:component-scan base-package="com.bookgeorge.controller, com.bookgeorge.dao, com.bookgeorge.service" />
-		 -->
+		<context:component-scan base-package="expert.wearedata.api" />
+		<context:property-placeholder location="classpath:/properties/db.properties"/>
 		 
 		<mvc:annotation-driven>
 			<mvc:message-converters>
@@ -36,30 +35,18 @@
 		</bean>
 		<!-- DataSource -->
 	
-	<!-- 
 		<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 			<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
-			<property name="url" value="mysql://localhost:3307?serverTimezone=UTC"/>
-			<property name="username" value="root"/>
-			<property name="password" value="y315hm1i"/>
+			<property name="url" value="${db.jdbcUrl}"/>
+			<property name="username" value="${db.user}"/>
+			<property name="password" value="${db.password}"/>
 		</bean>
 		
-		 -->
-
-	<!-- 
-		<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-			<property name="driverClassName" value="org.mariadb.jdbc.Driver" />
-			<property name="url" value="jdbc:mariadb://payofus.cm83xrefdaio.ap-northeast-2.rds.amazonaws.com:3306/paylab"/>
-			<property name="username" value="root"/>
-			<property name="password" value="pou#7808"/>
-		</bean>  -->
- 
 		<!-- SqlSessionFactoryBean -->
 		<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" >
 			<property name="dataSource" ref="dataSource"/>
 			<property name="configLocation" value="classpath:mybatis-config.xml" />
 		</bean>
-		 
 		
 		<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		  <constructor-arg index="0" ref="sqlSessionFactory" />
